@@ -368,6 +368,12 @@ function maskAccount(name) {
   return first4 + stars + last4;
 }
 
+/* 取账号后5位数字，用于复制时脱敏显示 */
+function getLast5(name) {
+  var s = String(name).replace(/\s/g, '');
+  return s.length >= 5 ? s.slice(-5) : s;
+}
+
 function getSortedIndices() {
   return data
     .map(function(row, i) { return { i: i, total: (row.r1||0)+(row.r2||0)+(row.r3||0) }; })
@@ -733,28 +739,44 @@ function confirmImport() {
   pendingImportData = null;
 }
 
-/* ===== 复制 WhatsApp 格式（账号脱敏 + 马来语 + 列对齐） ===== */
+/* ===== 复制 WhatsApp 格式（后5位 + 纯数字排名 + 同分同排名 + 列对齐） ===== */
 function copyData() {
   if (!data.length) { showToast('Tiada data untuk disalin', true); return; }
   var sorted = getSortedIndices();
-
-  /* 不换行空格（NBSP），WhatsApp 不会折叠此类空格，用于对齐 */
   var NB = '\u00A0';
 
-  /* 第一遍：计算所有脱敏账号，找出最长的名字长度和最大的数值宽度 */
+  /* 第一遍：构建条目，计算同分同排名、最大名称长度、最大数值宽度 */
   var maxNameLen = 0;
   var maxNumLen = 1;
+  var maxRankLen = 1;
   var entries = [];
-  sorted.forEach(function(dataIdx, rank) {
+
+  sorted.forEach(function(dataIdx, pos) {
     var row = data[dataIdx];
     var total = (row.r1||0) + (row.r2||0) + (row.r3||0);
-    var masked = maskAccount(row.name);
-    if (masked.length > maxNameLen) maxNameLen = masked.length;
+    /* 只取后5位 */
+    var shortName = getLast5(row.name);
+    if (shortName.length > maxNameLen) maxNameLen = shortName.length;
     var nums = [row.r1||0, row.r2||0, row.r3||0, total];
     nums.forEach(function(n) {
       if (String(n).length > maxNumLen) maxNumLen = String(n).length;
     });
-    entries.push({ rank: rank, masked: masked, r1: row.r1||0, r2: row.r2||0, r3: row.r3||0, total: total });
+    entries.push({ pos: pos, shortName: shortName, r1: row.r1||0, r2: row.r2||0, r3: row.r3||0, total: total });
+  });
+
+  /* 计算同分同排名（标准竞赛排名：同分同名次，下一名次跳过） */
+  var prevTotal = -1;
+  var prevRank = 0;
+  entries.forEach(function(e, i) {
+    if (e.total === prevTotal) {
+      e.displayRank = prevRank;
+    } else {
+      e.displayRank = i + 1;
+      prevRank = e.displayRank;
+      prevTotal = e.total;
+    }
+    var rLen = String(e.displayRank).length;
+    if (rLen > maxRankLen) maxRankLen = rLen;
   });
 
   var lines = [];
@@ -762,19 +784,18 @@ function copyData() {
   lines.push('━━━━━━━━━━━━━━━━━━━━━━');
   lines.push('');
 
-  /* 第二遍：生成每行，用 NBSP 填充保证列对齐 */
+  /* 第二遍：生成每行，NBSP 填充对齐 */
   entries.forEach(function(e) {
-    var rankLabel;
-    if (e.rank === 0) rankLabel = '🥇';
-    else if (e.rank === 1) rankLabel = '🥈';
-    else if (e.rank === 2) rankLabel = '🥉';
-    else rankLabel = String(e.rank+1).padStart(2,'0') + '.';
+    /* 排名：纯数字，左填充 NBSP 对齐 */
+    var rankStr = String(e.displayRank);
+    while (rankStr.length < maxRankLen) rankStr = NB + rankStr;
+    var rankLabel = rankStr + '.';
 
-    /* 脱敏账号右填充 NBSP 至最长名称长度 */
-    var paddedName = e.masked;
+    /* 后5位账号，右填充 NBSP 对齐 */
+    var paddedName = e.shortName;
     while (paddedName.length < maxNameLen) paddedName += NB;
 
-    /* 数值左填充 NBSP 至最大数值宽度 */
+    /* 数值左填充 NBSP 对齐 */
     var r1Str = String(e.r1);
     while (r1Str.length < maxNumLen) r1Str = NB + r1Str;
     var r2Str = String(e.r2);
