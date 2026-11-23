@@ -18,6 +18,11 @@
 --r1: #3a7dbf;
 --r2: #5a9a5a;
 --r3: #c87c3a;
+--r4: #7c5cbf;
+--r5: #bf5c7c;
+--r6: #3a9a9a;
+--r7: #9a7a3a;
+--r8: #6a7a8a;
 --text: #2d3d2e;
 --text2: #5a7260;
 --text3: #8aaa8c;
@@ -25,7 +30,6 @@
 --success: #2e7d45;
 --radius: 10px;
 --shadow: 0 2px 16px rgba(60,90,65,0.10);
---btn-dark-green: #1a5c2e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +43,7 @@ background-image:
 radial-gradient(ellipse at 15% 15%, rgba(74,140,92,0.08) 0%, transparent 55%),
 radial-gradient(ellipse at 85% 85%, rgba(58,122,106,0.07) 0%, transparent 55%);
 }
-.container { max-width: 960px; margin: 0 auto; }
+.container { max-width: 1080px; margin: 0 auto; }
 .header { display: flex; align-items: center; margin-bottom: 26px; gap: 14px; }
 .title-icon {
 width: 46px; height: 46px;
@@ -50,46 +54,48 @@ font-size: 22px; box-shadow: 0 3px 12px rgba(74,140,92,0.25); flex-shrink: 0;
 h1 { font-size: 21px; font-weight: 700; color: var(--text); }
 .subtitle { color: var(--text2); font-size: 13px; margin-top: 3px; }
 
-.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); transition: border-color 0.2s; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; box-shadow: var(--shadow); transition: border-color 0.2s; }
 .card:hover { border-color: var(--border-light); }
-.card-label { font-size: 12px; color: var(--text2); margin-bottom: 5px; font-weight: 500; }
-.card-value { font-size: 26px; font-weight: 700; font-family: 'DM Mono', monospace; }
-.card-value.r1 { color: var(--r1); } .card-value.r2 { color: var(--r2); } .card-value.r3 { color: var(--r3); } .card-value.total { color: var(--text); } .card-value.lifetime { color: var(--accent2); } .card-value.redeem { color: var(--accent3); }
+.card-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; font-weight: 500; white-space: nowrap; }
+.card-value { font-size: 21px; font-weight: 700; font-family: 'DM Mono', monospace; }
+.card-value.r1 { color: var(--r1); } .card-value.r2 { color: var(--r2); } .card-value.r3 { color: var(--r3); }
+.card-value.r4 { color: var(--r4); } .card-value.r5 { color: var(--r5); } .card-value.r6 { color: var(--r6); }
+.card-value.r7 { color: var(--r7); } .card-value.r8 { color: var(--r8); }
+.card-value.total { color: var(--text); }
 
+/* Toolbar */
 .toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; }
 .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 15px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; font-family: inherit; transition: all 0.18s; line-height: 1; }
-.btn-primary { background: var(--btn-dark-green); color: #fff; box-shadow: 0 2px 10px rgba(26,92,46,0.30); }
-.btn-primary:hover { background: #145224; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(26,92,46,0.35); }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; box-shadow: 0 2px 8px rgba(74,140,92,0.25); }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 .btn-outline { background: transparent; border: 1px solid var(--border-light); color: var(--text2); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn-copy { background: var(--surface2); border: 1px solid var(--border-light); color: var(--accent3); margin-left: auto; }
 .btn-copy:hover { background: var(--accent3); color: #fff; border-color: var(--accent3); }
-.btn-copy-full { background: var(--surface2); border: 1px solid var(--border-light); color: var(--r2); }
-.btn-copy-full:hover { background: var(--r2); color: #fff; border-color: var(--r2); }
-.btn-export { background: var(--surface2); border: 1px solid var(--border-light); color: var(--accent2); }
-.btn-export:hover { background: var(--accent2); color: #fff; border-color: var(--accent2); }
-.btn-import { background: var(--surface2); border: 1px solid var(--border-light); color: var(--r1); }
-.btn-import:hover { background: var(--r1); color: #fff; border-color: var(--r1); }
 
 .sort-note { font-size: 11px; color: var(--text3); margin-left: 2px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 3px 9px; }
 
+/* Search bar */
 .search-bar {
 display: flex; align-items: center; gap: 0;
 background: var(--surface); border: 1.5px solid var(--border);
 border-radius: 9px; overflow: hidden;
-margin-bottom: 14px; box-shadow: var(--shadow); transition: border-color 0.2s;
+margin-bottom: 14px;
+box-shadow: var(--shadow);
+transition: border-color 0.2s;
 }
 .search-bar:focus-within { border-color: var(--accent); }
 .search-icon {
 padding: 0 12px; color: var(--text3); font-size: 16px;
 display: flex; align-items: center; flex-shrink: 0;
-background: var(--surface2); height: 38px; border-right: 1px solid var(--border);
+background: var(--surface2); height: 38px;
+border-right: 1px solid var(--border);
 }
 .search-input {
 flex: 1; border: none; background: transparent;
 color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px;
-padding: 0 12px; height: 38px; outline: none;
+padding: 0 12px; height: 38px; outline: none; min-width: 60px;
 }
 .search-input::placeholder { color: var(--text3); font-family: 'Noto Sans SC', sans-serif; font-size: 13px; }
 .search-clear {
@@ -107,42 +113,42 @@ font-family: 'DM Mono', monospace;
 }
 .search-meta.hidden { display: none; }
 
-.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow-x: auto; box-shadow: var(--shadow); }
-table { width: 100%; border-collapse: collapse; min-width: 820px; }
-thead th { background: var(--surface2); padding: 11px 8px; font-size: 12px; font-weight: 600; color: var(--text2); text-align: left; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+/* Table */
+.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow-x: auto; overflow-y: hidden; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; min-width: 900px; }
+thead th { background: var(--surface2); padding: 10px 8px; font-size: 11px; font-weight: 600; color: var(--text2); text-align: left; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.7px; white-space: nowrap; }
 thead th:nth-child(3) { color: var(--r1); } thead th:nth-child(4) { color: var(--r2); } thead th:nth-child(5) { color: var(--r3); }
+thead th:nth-child(6) { color: var(--r4); } thead th:nth-child(7) { color: var(--r5); } thead th:nth-child(8) { color: var(--r6); }
+thead th:nth-child(9) { color: var(--r7); } thead th:nth-child(10) { color: var(--r8); }
 
 tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
 tbody tr:last-child { border-bottom: none; }
 tbody tr:hover { background: rgba(74,140,92,0.05); }
 td { padding: 9px 8px; font-size: 14px; vertical-align: middle; }
 
+.rank-badge { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text3); font-weight: 600; }
+
 .cell-edit { background: transparent; border: 1px solid transparent; border-radius: 6px; color: var(--text); font-family: inherit; font-size: 14px; padding: 4px 7px; width: 100%; transition: border-color 0.18s, background 0.18s; }
 .cell-edit:focus { outline: none; border-color: var(--accent); background: rgba(74,140,92,0.07); }
 .cell-name { font-family: 'DM Mono', monospace; font-size: 13px; }
-.cell-num { text-align: center; }
+.cell-num { text-align: center; padding-left: 4px; padding-right: 4px; }
 .r1-val { color: var(--r1); } .r2-val { color: var(--r2); } .r3-val { color: var(--r3); }
+.r4-val { color: var(--r4); } .r5-val { color: var(--r5); } .r6-val { color: var(--r6); }
+.r7-val { color: var(--r7); } .r8-val { color: var(--r8); }
 .row-total { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--text); font-size: 15px; text-align: center; }
-.row-lifetime { font-family: 'DM Mono', monospace; font-weight: 600; color: var(--accent2); font-size: 13px; text-align: center; }
 
-.stepper { display: flex; align-items: center; gap: 3px; justify-content: center; }
-.step-btn { width: 23px; height: 23px; border-radius: 6px; border: 1px solid var(--border-light); background: var(--surface2); color: var(--text2); cursor: pointer; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+.stepper { display: flex; align-items: center; gap: 2px; justify-content: center; }
+.step-btn { width: 20px; height: 20px; border-radius: 6px; border: 1px solid var(--border-light); background: var(--surface2); color: var(--text2); cursor: pointer; font-size: 13px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; padding: 0; }
 .step-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(74,140,92,0.08); }
-.step-val { width: 32px; text-align: center; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; background: transparent; border: none; color: inherit; cursor: default; }
+.step-val { width: 26px; text-align: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; background: transparent; border: none; color: inherit; cursor: default; }
 
 .del-btn { background: transparent; border: none; cursor: pointer; color: var(--text3); font-size: 16px; width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
 .del-btn:hover { background: rgba(192,57,43,0.1); color: var(--danger); }
 
+/* Highlight matched text */
 .hl { background: rgba(200,124,58,0.25); border-radius: 3px; padding: 0 1px; color: var(--accent3); font-weight: 600; }
 
-/* 兑奖区域 */
-.redeem-cell { text-align: center; min-width: 100px; }
-.redeem-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; }
-.redeem-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent3); font-weight: 600; white-space: nowrap; }
-.redeem-btn { display: inline-flex; align-items: center; gap: 2px; padding: 2px 6px; border-radius: 5px; border: 1px solid var(--accent3); background: rgba(200,124,58,0.08); color: var(--accent3); cursor: pointer; font-size: 11px; font-weight: 500; font-family: inherit; transition: all 0.18s; white-space: nowrap; }
-.redeem-btn:hover { background: var(--accent3); color: #fff; }
-
-.note-cell { min-width: 90px; }
+.note-cell { min-width: 100px; }
 .note-tags-inline { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
 .note-tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border-light); background: var(--surface2); color: var(--text3); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.18s; user-select: none; white-space: nowrap; }
 .note-tag:hover { border-color: var(--accent3); color: var(--accent3); background: rgba(200,124,58,0.08); }
@@ -153,25 +159,13 @@ td { padding: 9px 8px; font-size: 14px; vertical-align: middle; }
 .no-results { padding: 36px; text-align: center; color: var(--text3); font-size: 14px; }
 .no-results-icon { font-size: 30px; margin-bottom: 8px; }
 
-.motivation-box {
-  margin-top: 18px;
-  background: linear-gradient(135deg, rgba(74,140,92,0.08), rgba(58,122,106,0.06));
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px;
-  box-shadow: var(--shadow); display: none; animation: fadeUp 0.4s ease;
-}
-.motivation-box.visible { display: block; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.motivation-line { font-size: 14px; line-height: 1.85; color: var(--text2); }
-.motivation-line:first-child { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-.motivation-line .emoji { font-size: 16px; vertical-align: middle; }
-
 .toast { position: fixed; bottom: 28px; right: 28px; background: var(--success); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transform: translateY(10px); transition: all 0.25s; z-index: 999; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 .toast.show { opacity: 1; transform: translateY(0); }
 .toast.warn { background: #c0392b; }
 
 .overlay { display: none; position: fixed; inset: 0; background: rgba(45,61,46,0.45); backdrop-filter: blur(4px); z-index: 100; align-items: center; justify-content: center; }
 .overlay.open { display: flex; }
-.modal { background: var(--surface); border: 1px solid var(--border-light); border-radius: 14px; padding: 26px 26px 22px; width: 340px; box-shadow: 0 16px 48px rgba(45,61,46,0.2); animation: pop 0.2s ease; }
+.modal { background: var(--surface); border: 1px solid var(--border-light); border-radius: 14px; padding: 26px 26px 22px; width: 380px; max-width: calc(100vw - 32px); box-shadow: 0 16px 48px rgba(45,61,46,0.2); animation: pop 0.2s ease; }
 @keyframes pop { from { transform: scale(0.93); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .modal h3 { font-size: 16px; margin-bottom: 16px; color: var(--text); }
 .form-group { margin-bottom: 12px; }
@@ -183,23 +177,28 @@ td { padding: 9px 8px; font-size: 14px; vertical-align: middle; }
 .form-error.show { display: block; }
 .modal-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
 
-.modal-wide { width: 400px; }
-.import-option { display: flex; gap: 10px; margin-top: 14px; }
-.import-opt-card { flex: 1; padding: 14px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface2); cursor: pointer; transition: all 0.2s; text-align: center; }
-.import-opt-card:hover { border-color: var(--accent); background: rgba(74,140,92,0.06); }
-.import-opt-card.selected { border-color: var(--accent); background: rgba(74,140,92,0.10); }
-.import-opt-card .opt-icon { font-size: 24px; margin-bottom: 6px; }
-.import-opt-card .opt-title { font-size: 13px; font-weight: 600; color: var(--text); }
-.import-opt-card .opt-desc { font-size: 11px; color: var(--text3); margin-top: 4px; }
+/* R1-R8 inputs grid in modal */
+.r-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 12px; }
+.r-grid .form-group { margin-bottom: 0; }
+.r-grid .form-group label { font-family: 'DM Mono', monospace; font-weight: 600; }
+.r-grid .form-group:nth-child(1) label { color: var(--r1); }
+.r-grid .form-group:nth-child(2) label { color: var(--r2); }
+.r-grid .form-group:nth-child(3) label { color: var(--r3); }
+.r-grid .form-group:nth-child(4) label { color: var(--r4); }
+.r-grid .form-group:nth-child(5) label { color: var(--r5); }
+.r-grid .form-group:nth-child(6) label { color: var(--r6); }
+.r-grid .form-group:nth-child(7) label { color: var(--r7); }
+.r-grid .form-group:nth-child(8) label { color: var(--r8); }
 
 @media(max-width:600px) {
+.summary { grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 8px; }
+.card-value { font-size: 18px; }
 .stepper { gap: 2px; }
+.step-btn { width: 18px; height: 18px; font-size: 11px; }
+.step-val { width: 22px; font-size: 12px; }
 td { padding: 7px 4px; font-size: 12px; }
-thead th { padding: 9px 4px; font-size: 11px; }
-.toolbar { gap: 6px; }
-.btn { padding: 7px 10px; font-size: 12px; }
-.motivation-box { padding: 16px 18px; }
-.modal-wide { width: 95vw; }
+thead th { padding: 8px 4px; font-size: 10px; }
+.r-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -210,7 +209,7 @@ thead th { padding: 9px 4px; font-size: 11px; }
 <div class="title-icon">📊</div>
 <div>
 <h1>客户邀请统计</h1>
-<div class="subtitle">管理每位客户的 R1 / R2 / R3 邀请数据，按邀请总数自动排序</div>
+<div class="subtitle">管理每位客户的 R1 - R8 邀请数据，按邀请总数自动排序</div>
 </div>
 </div>
 
@@ -219,26 +218,27 @@ thead th { padding: 9px 4px; font-size: 11px; }
 <div class="card"><div class="card-label">R1 总计</div><div class="card-value r1" id="sum-r1">0</div></div>
 <div class="card"><div class="card-label">R2 总计</div><div class="card-value r2" id="sum-r2">0</div></div>
 <div class="card"><div class="card-label">R3 总计</div><div class="card-value r3" id="sum-r3">0</div></div>
+<div class="card"><div class="card-label">R4 总计</div><div class="card-value r4" id="sum-r4">0</div></div>
+<div class="card"><div class="card-label">R5 总计</div><div class="card-value r5" id="sum-r5">0</div></div>
+<div class="card"><div class="card-label">R6 总计</div><div class="card-value r6" id="sum-r6">0</div></div>
+<div class="card"><div class="card-label">R7 总计</div><div class="card-value r7" id="sum-r7">0</div></div>
+<div class="card"><div class="card-label">R8 总计</div><div class="card-value r8" id="sum-r8">0</div></div>
 <div class="card"><div class="card-label">邀请总量</div><div class="card-value total" id="sum-total">0</div></div>
-<div class="card"><div class="card-label">累计总量</div><div class="card-value lifetime" id="sum-lifetime">0</div></div>
-<div class="card"><div class="card-label">已兑奖</div><div class="card-value redeem" id="sum-redeem">0</div></div>
 </div>
 
 <div class="toolbar">
 <button class="btn btn-primary" onclick="openModal()">＋ 添加客户</button>
-<button class="btn btn-export" onclick="exportData()">📤 导出</button>
-<button class="btn btn-import" onclick="triggerImport()">📥 导入</button>
 <button class="btn btn-outline" onclick="clearAll()">🗑 清空</button>
 <span class="sort-note">↓ 按邀请总数排序</span>
 <button class="btn btn-copy" onclick="copyData()">📋 复制数据</button>
-<button class="btn btn-copy-full" onclick="copyDataFull()">📋 完整复制</button>
 </div>
 
-<input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImportFile(this)" />
-
+<!-- Search bar -->
 <div class="search-bar">
 <div class="search-icon">🔍</div>
-<input class="search-input" id="search-input" type="text" placeholder="搜索客户编号（支持后4位或完整编号）…" oninput="onSearch(this.value)" />
+<input class="search-input" id="search-input" type="text"
+placeholder="搜索客户编号（支持后4位或完整编号）…"
+oninput="onSearch(this.value)" />
 <button class="search-clear" id="search-clear" onclick="clearSearch()" title="清除搜索">✕</button>
 <div class="search-meta hidden" id="search-meta"></div>
 </div>
@@ -247,383 +247,371 @@ thead th { padding: 9px 4px; font-size: 11px; }
 <table>
 <thead>
 <tr>
-<th style="width:36px">排名</th>
+<th style="width:44px">排名</th>
 <th>客户编号</th>
-<th style="width:105px;text-align:center">R1</th>
-<th style="width:105px;text-align:center">R2</th>
-<th style="width:105px;text-align:center">R3</th>
-<th style="width:46px;text-align:center">合计</th>
-<th style="width:46px;text-align:center">累计</th>
-<th style="width:110px;text-align:center">兑奖</th>
+<th style="width:82px;text-align:center">R1</th>
+<th style="width:82px;text-align:center">R2</th>
+<th style="width:82px;text-align:center">R3</th>
+<th style="width:82px;text-align:center">R4</th>
+<th style="width:82px;text-align:center">R5</th>
+<th style="width:82px;text-align:center">R6</th>
+<th style="width:82px;text-align:center">R7</th>
+<th style="width:82px;text-align:center">R8</th>
+<th style="width:52px;text-align:center">合计</th>
 <th>备注</th>
-<th style="width:34px"></th>
+<th style="width:38px"></th>
 </tr>
 </thead>
 <tbody id="tbody"></tbody>
 </table>
-<div class="empty" id="empty-state"><div class="empty-icon">🌿</div>暂无数据，点击「添加客户」开始统计</div>
-<div class="no-results" id="no-results" style="display:none;"><div class="no-results-icon">🔎</div>未找到匹配的客户，请检查编号是否正确</div>
+<div class="empty" id="empty-state">
+<div class="empty-icon">🌿</div>
+暂无数据，点击「添加客户」开始统计
+</div>
+<div class="no-results" id="no-results" style="display:none;">
+<div class="no-results-icon">🔎</div>
+未找到匹配的客户，请检查编号是否正确
+</div>
+</div>
 </div>
 
-<div class="motivation-box" id="motivation-box">
-<div class="motivation-line"><span class="emoji">🎉</span> Tahniah kepada rakan-rakan yang telah memasuki senarai pendahulu di atas! <span class="emoji">🎉</span></div>
-<div class="motivation-line">Senarai pendahulu dikemas kini secara masa nyata! <span class="emoji">🔄</span></div>
-<div class="motivation-line"><span class="emoji">💡</span>Boleh ditebus sebaik sahaja mencapai sasaran, atau dikumpulkan sehingga markah tertinggi untuk ditebus<span class="emoji">🏆</span><span class="emoji">✨</span></div>
-<div class="motivation-line">Pantau kedudukan anda dengan rapi, dan ambil tindakan sekarang! <span class="emoji">💪</span></div>
-</div>
-
-</div>
-
+<!-- Modal -->
 <div class="overlay" id="overlay" onclick="closeModal(event)">
 <div class="modal">
 <h3>添加客户</h3>
-<div class="form-group"><label>客户编号（完整）</label><input type="text" id="inp-name" placeholder="例如：CUST00012345" autocomplete="off" /><div class="form-error" id="dup-error">⚠ 该账号已存在，请勿重复添加</div></div>
+<div class="form-group">
+<label>客户编号（完整）</label>
+<input type="text" id="inp-name" placeholder="例如：CUST00012345" autocomplete="off" />
+<div class="form-error" id="dup-error">⚠ 该账号已存在，请勿重复添加</div>
+</div>
+<div class="r-grid">
 <div class="form-group"><label>R1 数量</label><input type="number" id="inp-r1" value="0" min="0" /></div>
 <div class="form-group"><label>R2 数量</label><input type="number" id="inp-r2" value="0" min="0" /></div>
 <div class="form-group"><label>R3 数量</label><input type="number" id="inp-r3" value="0" min="0" /></div>
-<div class="modal-btns"><button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="addCustomer()">确认添加</button></div>
+<div class="form-group"><label>R4 数量</label><input type="number" id="inp-r4" value="0" min="0" /></div>
+<div class="form-group"><label>R5 数量</label><input type="number" id="inp-r5" value="0" min="0" /></div>
+<div class="form-group"><label>R6 数量</label><input type="number" id="inp-r6" value="0" min="0" /></div>
+<div class="form-group"><label>R7 数量</label><input type="number" id="inp-r7" value="0" min="0" /></div>
+<div class="form-group"><label>R8 数量</label><input type="number" id="inp-r8" value="0" min="0" /></div>
 </div>
+<div class="modal-btns">
+<button class="btn btn-outline" onclick="closeModal()">取消</button>
+<button class="btn btn-primary" onclick="addCustomer()">确认添加</button>
 </div>
-
-<div class="overlay" id="import-overlay" onclick="closeImportModal(event)">
-<div class="modal modal-wide">
-<h3>📥 导入数据</h3>
-<p style="font-size:13px;color:var(--text2);margin-bottom:6px;">请选择导入方式：</p>
-<div class="import-option">
-<div class="import-opt-card selected" id="opt-replace" onclick="selectImportMode('replace')"><div class="opt-icon">🔄</div><div class="opt-title">替换全部</div><div class="opt-desc">清空现有数据，用导入数据替代</div></div>
-<div class="import-opt-card" id="opt-merge" onclick="selectImportMode('merge')"><div class="opt-icon">🔗</div><div class="opt-title">合并追加</div><div class="opt-desc">保留现有数据，追加新记录（重复跳过）</div></div>
-</div>
-<div class="modal-btns" style="margin-top:20px;"><button class="btn btn-outline" onclick="closeImportModal()">取消</button><button class="btn btn-primary" onclick="confirmImport()">确认导入</button></div>
 </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-var NOTE_OPTIONS = [
-  { key: 'xiaohao',      label: '小号',    icon: '👤' },
-  { key: 'zhenshikehu', label: '真实客户', icon: '✅' },
+const NOTE_OPTIONS = [
+{ key: 'xiaohao',      label: '小号',    icon: '👤' },
+{ key: 'zhenshikehu', label: '真实客户', icon: '✅' },
 ];
 
-/* ===== 数据初始化（兼容旧 redeemCount → 新 redeem3/redeem6/redeem10） ===== */
-var data = JSON.parse(localStorage.getItem('cust_stats') || '[]');
-data.forEach(function(d) {
-  if (typeof d.lifetimeTotal !== 'number') d.lifetimeTotal = (d.r1||0) + (d.r2||0) + (d.r3||0);
-  if (typeof d.redeem3 !== 'number') d.redeem3 = (typeof d.redeemCount === 'number') ? d.redeemCount : 0;
-  if (typeof d.redeem6 !== 'number') d.redeem6 = 0;
-  if (typeof d.redeem10 !== 'number') d.redeem10 = 0;
-  if (d.redeemCount !== undefined) delete d.redeemCount;
-});
+// R1-R8 字段定义
+const R_KEYS = ['r1','r2','r3','r4','r5','r6','r7','r8'];
 
-var searchQuery = '';
-var importMode = 'replace';
-var pendingImportData = null;
+let data = JSON.parse(localStorage.getItem('cust_stats') || '[]');
+let searchQuery = '';
 
 function save() { localStorage.setItem('cust_stats', JSON.stringify(data)); }
 
 function getLast4(name) {
-  var s = String(name).replace(/\s/g, '');
-  return s.length >= 4 ? s.slice(-4) : s.padStart(4, '*');
+const s = String(name).replace(/\s/g, '');
+return s.length >= 4 ? s.slice(-4) : s.padStart(4, '*');
 }
 
-function maskLast5(name) {
-  var s = String(name).replace(/\s/g, '');
-  if (s.length <= 5) return s;
-  return '****' + s.slice(-5);
+function totalOf(row) {
+let t = 0;
+R_KEYS.forEach(k => { t += row[k] || 0; });
+return t;
 }
 
 function getSortedIndices() {
-  return data
-    .map(function(row, i) { return { i: i, total: (row.r1||0)+(row.r2||0)+(row.r3||0) }; })
-    .sort(function(a, b) { return b.total - a.total; })
-    .map(function(x) { return x.i; });
+return data
+.map((row, i) => ({ i, total: totalOf(row) }))
+.sort((a, b) => b.total - a.total)
+.map(x => x.i);
 }
 
+// Highlight matched substring in name
 function highlightMatch(name, query) {
-  if (!query) return escHtml(name);
-  var escaped = escHtml(name);
-  var q = escHtml(query.trim());
-  if (!q) return escaped;
-  var idx = escaped.toLowerCase().indexOf(q.toLowerCase());
-  if (idx === -1) return escaped;
-  return escaped.slice(0, idx) + '<span class="hl">' + escaped.slice(idx, idx + q.length) + '</span>' + escaped.slice(idx + q.length);
+if (!query) return escHtml(name);
+const escaped = escHtml(name);
+const q = escHtml(query.trim());
+if (!q) return escaped;
+// Match full name or last-4 position
+const idx = escaped.toLowerCase().indexOf(q.toLowerCase());
+if (idx === -1) return escaped;
+return escaped.slice(0, idx)
++ `<span class="hl">${escaped.slice(idx, idx + q.length)}</span>`
++ escaped.slice(idx + q.length);
 }
 
+// Filter: matches if name contains query, or last4 contains query
 function matchesSearch(name, query) {
-  if (!query) return true;
-  var q = query.trim().toLowerCase();
-  if (!q) return true;
-  return name.toLowerCase().includes(q) || getLast4(name).toLowerCase().includes(q);
+if (!query) return true;
+const q = query.trim().toLowerCase();
+if (!q) return true;
+const n = name.toLowerCase();
+const last4 = getLast4(name).toLowerCase();
+return n.includes(q) || last4.includes(q);
 }
 
-/* ===== 渲染 ===== */
 function render() {
-  var tbody = document.getElementById('tbody');
-  var empty = document.getElementById('empty-state');
-  var noResults = document.getElementById('no-results');
-  var motivBox = document.getElementById('motivation-box');
-  tbody.innerHTML = '';
+const tbody = document.getElementById('tbody');
+const empty = document.getElementById('empty-state');
+const noResults = document.getElementById('no-results');
+tbody.innerHTML = '';
 
-  if (data.length === 0) {
-    empty.style.display = 'block'; noResults.style.display = 'none';
-    motivBox.classList.remove('visible'); updateSummary(); return;
-  }
-  empty.style.display = 'none';
-
-  var sorted = getSortedIndices();
-  var q = searchQuery.trim();
-  var filtered = sorted
-    .map(function(dataIdx, rank) { return { dataIdx: dataIdx, rank: rank }; })
-    .filter(function(item) { return matchesSearch(data[item.dataIdx].name, q); });
-
-  if (filtered.length === 0 && q) {
-    noResults.style.display = 'block'; motivBox.classList.remove('visible');
-    updateSearchMeta(0, sorted.length); updateSummary(); return;
-  }
+if (data.length === 0) {
+  empty.style.display = 'block';
   noResults.style.display = 'none';
-  if (!q || filtered.length > 0) motivBox.classList.add('visible');
-  else motivBox.classList.remove('visible');
-  if (q) updateSearchMeta(filtered.length, sorted.length); else updateSearchMeta(null);
-
-  filtered.forEach(function(item) {
-    var dataIdx = item.dataIdx, rank = item.rank, row = data[dataIdx];
-    var total = (row.r1||0) + (row.r2||0) + (row.r3||0);
-    var rankNum = rank + 1;
-    var rankLabel;
-    if (rankNum === 1) rankLabel = '🥇';
-    else if (rankNum === 2) rankLabel = '🥈';
-    else if (rankNum === 3) rankLabel = '🥉';
-    else rankLabel = '<span style="font-size:12px;color:var(--text3);font-family:\'DM Mono\',monospace">' + String(rankNum).padStart(2,'0') + '</span>';
-
-    var tagsHtml = NOTE_OPTIONS.map(function(opt) {
-      return '<div class="note-tag ' + (row.noteTag===opt.key?'active':'') + '" onclick="selectNoteTag(' + dataIdx + ',\'' + opt.key + '\')">' + opt.icon + ' ' + opt.label + '</div>';
-    }).join('');
-
-    var displayName = highlightMatch(row.name, q);
-
-    /* 兑奖区域：显示各档次数 + 各档兑奖按钮 */
-    var redeemHtml = '<div class="redeem-wrap">';
-    var tierParts = [];
-    if ((row.redeem3||0) > 0) tierParts.push('3人×' + row.redeem3);
-    if ((row.redeem6||0) > 0) tierParts.push('6人×' + row.redeem6);
-    if ((row.redeem10||0) > 0) tierParts.push('10人×' + row.redeem10);
-    if (tierParts.length > 0) {
-      redeemHtml += '<span class="redeem-count">' + tierParts.join(' ') + '</span>';
-    }
-    if (total >= 3)  redeemHtml += '<button class="redeem-btn" onclick="redeemPrize(' + dataIdx + ',3)">3人🎁</button>';
-    if (total >= 6)  redeemHtml += '<button class="redeem-btn" onclick="redeemPrize(' + dataIdx + ',6)">6人🎁</button>';
-    if (total >= 10) redeemHtml += '<button class="redeem-btn" onclick="redeemPrize(' + dataIdx + ',10)">10人🎁</button>';
-    redeemHtml += '</div>';
-
-    var tr = document.createElement('tr');
-    tr.innerHTML =
-      '<td style="text-align:center">' + rankLabel + '</td>' +
-      '<td><div style="display:flex;align-items:center;gap:6px;">' +
-        '<span style="font-family:\'DM Mono\',monospace;font-size:13px;flex:1;">' + displayName + '</span>' +
-        '<input class="cell-edit cell-name" value="' + escHtml(row.name) + '" onchange="updateField(' + dataIdx + ',\'name\',this.value)" placeholder="客户编号" style="display:none;width:100%;" />' +
-        '<button onclick="toggleEditName(this,' + dataIdx + ')" style="background:transparent;border:1px solid var(--border-light);border-radius:5px;padding:2px 7px;font-size:11px;color:var(--text3);cursor:pointer;white-space:nowrap;font-family:inherit;transition:all 0.15s;" onmouseover="this.style.borderColor=\'var(--accent)\';this.style.color=\'var(--accent)\'" onmouseout="this.style.borderColor=\'var(--border-light)\';this.style.color=\'var(--text3)\'">编辑</button>' +
-      '</div></td>' +
-      '<td class="cell-num"><div class="stepper"><button class="step-btn" onclick="step(' + dataIdx + ',\'r1\',-1)">−</button><div class="step-val r1-val">' + (row.r1||0) + '</div><button class="step-btn" onclick="step(' + dataIdx + ',\'r1\',1)">＋</button></div></td>' +
-      '<td class="cell-num"><div class="stepper"><button class="step-btn" onclick="step(' + dataIdx + ',\'r2\',-1)">−</button><div class="step-val r2-val">' + (row.r2||0) + '</div><button class="step-btn" onclick="step(' + dataIdx + ',\'r2\',1)">＋</button></div></td>' +
-      '<td class="cell-num"><div class="stepper"><button class="step-btn" onclick="step(' + dataIdx + ',\'r3\',-1)">−</button><div class="step-val r3-val">' + (row.r3||0) + '</div><button class="step-btn" onclick="step(' + dataIdx + ',\'r3\',1)">＋</button></div></td>' +
-      '<td class="row-total">' + total + '</td>' +
-      '<td class="row-lifetime">' + (row.lifetimeTotal||0) + '</td>' +
-      '<td class="redeem-cell">' + redeemHtml + '</td>' +
-      '<td class="note-cell"><div class="note-tags-inline">' + tagsHtml + '</div></td>' +
-      '<td><button class="del-btn" onclick="deleteRow(' + dataIdx + ')" title="删除">✕</button></td>';
-    tbody.appendChild(tr);
-  });
   updateSummary();
+  return;
+}
+empty.style.display = 'none';
+
+const sorted = getSortedIndices();
+const q = searchQuery.trim();
+
+// Filter to matching indices (keep global rank from sorted)
+const filtered = sorted
+  .map((dataIdx, rank) => ({ dataIdx, rank }))
+  .filter(({ dataIdx }) => matchesSearch(data[dataIdx].name, q));
+
+if (filtered.length === 0 && q) {
+  noResults.style.display = 'block';
+  updateSearchMeta(0, sorted.length);
+  updateSummary();
+  return;
+}
+noResults.style.display = 'none';
+
+if (q) updateSearchMeta(filtered.length, sorted.length);
+else updateSearchMeta(null);
+
+filtered.forEach(({ dataIdx, rank }) => {
+  const row = data[dataIdx];
+  const total = totalOf(row);
+  const rankNum = rank + 1;
+  const rankLabel = rankNum <= 3
+    ? ['🥇','🥈','🥉'][rankNum-1]
+    : `<span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${String(rankNum).padStart(2,'0')}</span>`;
+
+  const tagsHtml = NOTE_OPTIONS.map(opt =>
+    `<div class="note-tag ${row.noteTag===opt.key?'active':''}" onclick="selectNoteTag(${dataIdx},'${opt.key}')">${opt.icon} ${opt.label}</div>`
+  ).join('');
+
+  // Highlighted name for display
+  const displayName = highlightMatch(row.name, q);
+
+  // R1-R8 stepper cells
+  const rCells = R_KEYS.map(k => `
+    <td class="cell-num"><div class="stepper">
+      <button class="step-btn" onclick="step(${dataIdx},'${k}',-1)">−</button>
+      <div class="step-val ${k}-val">${row[k]||0}</div>
+      <button class="step-btn" onclick="step(${dataIdx},'${k}',1)">＋</button>
+    </div></td>`).join('');
+
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="text-align:center">${rankLabel}</td>
+    <td>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-family:'DM Mono',monospace;font-size:13px;flex:1;">${displayName}</span>
+        <input class="cell-edit cell-name" value="${escHtml(row.name)}"
+          onchange="updateField(${dataIdx},'name',this.value)"
+          placeholder="客户编号"
+          style="display:none;width:100%;" />
+        <button onclick="toggleEditName(this,${dataIdx})"
+          style="background:transparent;border:1px solid var(--border-light);border-radius:5px;padding:2px 7px;font-size:11px;color:var(--text3);cursor:pointer;white-space:nowrap;font-family:inherit;transition:all 0.15s;"
+          onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+          onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--text3)'"
+        >编辑</button>
+      </div>
+    </td>
+    ${rCells}
+    <td class="row-total">${total}</td>
+    <td class="note-cell"><div class="note-tags-inline">${tagsHtml}</div></td>
+    <td><button class="del-btn" onclick="deleteRow(${dataIdx})" title="删除">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+});
+
+updateSummary();
 }
 
+// Toggle inline name editing
 function toggleEditName(btn, dataIdx) {
-  var td = btn.closest('td'), span = td.querySelector('span'), input = td.querySelector('input');
-  var isEditing = input.style.display !== 'none';
-  if (isEditing) { updateField(dataIdx, 'name', input.value); btn.textContent = '编辑'; }
-  else { span.style.display = 'none'; input.style.display = 'block'; input.focus(); btn.textContent = '保存'; }
+const td = btn.closest('td');
+const span = td.querySelector('span');
+const input = td.querySelector('input');
+const isEditing = input.style.display !== 'none';
+if (isEditing) {
+// Save
+updateField(dataIdx, 'name', input.value);
+btn.textContent = '编辑';
+} else {
+span.style.display = 'none';
+input.style.display = 'block';
+input.focus();
+btn.textContent = '保存';
+}
 }
 
-function onSearch(val) { searchQuery = val; document.getElementById('search-clear').classList.toggle('visible', val.length > 0); render(); }
-function clearSearch() { document.getElementById('search-input').value = ''; searchQuery = ''; document.getElementById('search-clear').classList.remove('visible'); updateSearchMeta(null); render(); document.getElementById('search-input').focus(); }
-function updateSearchMeta(matched, total) { var el = document.getElementById('search-meta'); if (matched === null) el.classList.add('hidden'); else { el.classList.remove('hidden'); el.textContent = matched + ' / ' + total; } }
-function selectNoteTag(i, key) { data[i].noteTag = (data[i].noteTag === key) ? '' : key; save(); render(); }
+function onSearch(val) {
+searchQuery = val;
+const clearBtn = document.getElementById('search-clear');
+clearBtn.classList.toggle('visible', val.length > 0);
+render();
+}
+
+function clearSearch() {
+document.getElementById('search-input').value = '';
+searchQuery = '';
+document.getElementById('search-clear').classList.remove('visible');
+updateSearchMeta(null);
+render();
+document.getElementById('search-input').focus();
+}
+
+function updateSearchMeta(matched, total) {
+const el = document.getElementById('search-meta');
+if (matched === null) {
+el.classList.add('hidden');
+} else {
+el.classList.remove('hidden');
+el.textContent = `${matched} / ${total}`;
+}
+}
+
+function selectNoteTag(i, key) {
+data[i].noteTag = (data[i].noteTag === key) ? '' : key;
+save(); render();
+}
 
 function updateSummary() {
-  var r1=0, r2=0, r3=0, lt=0, rc=0;
-  data.forEach(function(d) {
-    r1+=d.r1||0; r2+=d.r2||0; r3+=d.r3||0; lt+=d.lifetimeTotal||0;
-    rc+=(d.redeem3||0)+(d.redeem6||0)+(d.redeem10||0);
-  });
-  document.getElementById('sum-customers').textContent = data.length;
-  document.getElementById('sum-r1').textContent = r1;
-  document.getElementById('sum-r2').textContent = r2;
-  document.getElementById('sum-r3').textContent = r3;
-  document.getElementById('sum-total').textContent = r1+r2+r3;
-  document.getElementById('sum-lifetime').textContent = lt;
-  document.getElementById('sum-redeem').textContent = rc;
+const sums = {};
+R_KEYS.forEach(k => { sums[k] = 0; });
+data.forEach(d => { R_KEYS.forEach(k => { sums[k] += d[k] || 0; }); });
+document.getElementById('sum-customers').textContent = data.length;
+R_KEYS.forEach(k => { document.getElementById('sum-' + k).textContent = sums[k]; });
+document.getElementById('sum-total').textContent = R_KEYS.reduce((a, k) => a + sums[k], 0);
 }
 
 function updateField(i, field, val) {
-  if (field === 'name') {
-    var trimmed = val.trim(); if (!trimmed) return;
-    var dup = data.some(function(d, idx) { return idx !== i && d.name.trim().toLowerCase() === trimmed.toLowerCase(); });
-    if (dup) { showToast('⚠ 账号已存在，请勿重复', true); return; }
-    data[i][field] = trimmed;
-  } else { data[i][field] = parseInt(val)||0; }
-  save(); render();
+if (field === 'name') {
+const trimmed = val.trim();
+if (!trimmed) return;
+const dup = data.some((d, idx) => idx !== i && d.name.trim().toLowerCase() === trimmed.toLowerCase());
+if (dup) { showToast('⚠ 账号已存在，请勿重复', true); return; }
+data[i][field] = trimmed;
+} else {
+data[i][field] = parseInt(val)||0;
+}
+save(); render();
 }
 
 function step(i, field, delta) {
-  data[i][field] = Math.max(0, (data[i][field]||0) + delta);
-  if (delta > 0) data[i].lifetimeTotal = (data[i].lifetimeTotal||0) + 1;
-  else data[i].lifetimeTotal = Math.max(0, (data[i].lifetimeTotal||0) - 1);
-  save(); render();
-}
-
-/* ===== 兑奖：按档位记录，不清零邀请数据 ===== */
-function redeemPrize(i, tier) {
-  var row = data[i];
-  var total = (row.r1||0) + (row.r2||0) + (row.r3||0);
-  if (total < tier) return;
-  if (!confirm('确认兑换 ' + tier + ' 人档奖励？邀请数据将保留不变。')) return;
-  var key = 'redeem' + tier;
-  row[key] = (row[key]||0) + 1;
-  save(); render();
-  showToast('🎉 ' + tier + '人档兑奖成功');
+data[i][field] = Math.max(0, (data[i][field]||0) + delta);
+save(); render();
 }
 
 function deleteRow(i) { data.splice(i, 1); save(); render(); }
-function clearAll() { if (!data.length) return; if (confirm('确认清空所有数据？')) { data=[]; save(); clearSearch(); render(); showToast('已清空所有数据'); } }
+
+function clearAll() {
+if (!data.length) return;
+if (confirm('确认清空所有数据？')) { data=[]; save(); clearSearch(); render(); showToast('已清空所有数据'); }
+}
 
 function openModal() {
-  document.getElementById('inp-name').value = ''; document.getElementById('inp-r1').value = '0';
-  document.getElementById('inp-r2').value = '0'; document.getElementById('inp-r3').value = '0';
-  document.getElementById('inp-name').classList.remove('error'); document.getElementById('dup-error').classList.remove('show');
-  document.getElementById('overlay').classList.add('open');
-  setTimeout(function() { document.getElementById('inp-name').focus(); }, 100);
+document.getElementById('inp-name').value = '';
+R_KEYS.forEach(k => { document.getElementById('inp-' + k).value = '0'; });
+document.getElementById('inp-name').classList.remove('error');
+document.getElementById('dup-error').classList.remove('show');
+document.getElementById('overlay').classList.add('open');
+setTimeout(() => document.getElementById('inp-name').focus(), 100);
 }
-function closeModal(e) { if (!e || e.target === document.getElementById('overlay')) document.getElementById('overlay').classList.remove('open'); }
+function closeModal(e) {
+if (!e || e.target === document.getElementById('overlay'))
+document.getElementById('overlay').classList.remove('open');
+}
 
 function checkDup() {
-  var val = document.getElementById('inp-name').value.trim().toLowerCase();
-  var dup = val && data.some(function(d) { return d.name.trim().toLowerCase() === val; });
-  document.getElementById('inp-name').classList.toggle('error', dup);
-  document.getElementById('dup-error').classList.toggle('show', dup);
-  return dup;
+const val = document.getElementById('inp-name').value.trim().toLowerCase();
+const dup = val && data.some(d => d.name.trim().toLowerCase() === val);
+document.getElementById('inp-name').classList.toggle('error', dup);
+document.getElementById('dup-error').classList.toggle('show', dup);
+return dup;
 }
 
 function addCustomer() {
-  var name = document.getElementById('inp-name').value.trim();
-  if (!name) { document.getElementById('inp-name').focus(); return; }
-  if (checkDup()) { showToast('⚠ 账号已存在，请检查', true); return; }
-  var initR1 = parseInt(document.getElementById('inp-r1').value)||0;
-  var initR2 = parseInt(document.getElementById('inp-r2').value)||0;
-  var initR3 = parseInt(document.getElementById('inp-r3').value)||0;
-  data.push({ name: name, r1: initR1, r2: initR2, r3: initR3, noteTag: '', lifetimeTotal: initR1+initR2+initR3, redeem3: 0, redeem6: 0, redeem10: 0 });
-  save(); render(); document.getElementById('overlay').classList.remove('open');
-  showToast('客户已添加 ✓');
-}
-
-function exportData() {
-  if (!data.length) { showToast('暂无数据可导出', true); return; }
-  var jsonStr = JSON.stringify({ version: 1, exportTime: new Date().toISOString(), data: data }, null, 2);
-  var blob = new Blob([jsonStr], { type: 'application/json' }), url = URL.createObjectURL(blob), a = document.createElement('a');
-  var now = new Date(), ts = now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
-  a.href=url; a.download='客户邀请统计_'+ts+'.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-  showToast('数据已导出 ✓');
-}
-
-function triggerImport() { document.getElementById('import-file').click(); }
-function handleImportFile(input) {
-  var file = input.files[0]; if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      var parsed = JSON.parse(e.target.result), importedData = null;
-      if (Array.isArray(parsed)) importedData = parsed;
-      else if (parsed && Array.isArray(parsed.data)) importedData = parsed.data;
-      else { showToast('⚠ 文件格式不正确', true); input.value=''; return; }
-      var valid = importedData.every(function(d) { return d.name && typeof d.r1==='number' && typeof d.r2==='number' && typeof d.r3==='number'; });
-      if (!valid) { showToast('⚠ 数据字段不完整', true); input.value=''; return; }
-      importedData.forEach(function(d) {
-        if (typeof d.lifetimeTotal!=='number') d.lifetimeTotal=(d.r1||0)+(d.r2||0)+(d.r3||0);
-        if (typeof d.redeem3!=='number') d.redeem3=(typeof d.redeemCount==='number')?d.redeemCount:0;
-        if (typeof d.redeem6!=='number') d.redeem6=0;
-        if (typeof d.redeem10!=='number') d.redeem10=0;
-        if (d.redeemCount!==undefined) delete d.redeemCount;
-      });
-      pendingImportData=importedData; importMode='replace';
-      document.getElementById('opt-replace').classList.add('selected');
-      document.getElementById('opt-merge').classList.remove('selected');
-      document.getElementById('import-overlay').classList.add('open');
-    } catch(err) { showToast('⚠ 文件解析失败', true); }
-    input.value='';
-  };
-  reader.readAsText(file);
-}
-
-function selectImportMode(mode) { importMode=mode; document.getElementById('opt-replace').classList.toggle('selected',mode==='replace'); document.getElementById('opt-merge').classList.toggle('selected',mode==='merge'); }
-function closeImportModal(e) { if (!e||e.target===document.getElementById('import-overlay')) { document.getElementById('import-overlay').classList.remove('open'); pendingImportData=null; } }
-function confirmImport() {
-  if (!pendingImportData) return;
-  if (importMode==='replace') { data=JSON.parse(JSON.stringify(pendingImportData)); save(); render(); document.getElementById('import-overlay').classList.remove('open'); showToast('导入成功，共 '+data.length+' 条记录 ✓'); }
-  else {
-    var added=0,skipped=0,existingNames={};
-    data.forEach(function(d){existingNames[d.name.trim().toLowerCase()]=true;});
-    pendingImportData.forEach(function(d){ if(existingNames[d.name.trim().toLowerCase()]){skipped++;}else{data.push(JSON.parse(JSON.stringify(d)));existingNames[d.name.trim().toLowerCase()]=true;added++;} });
-    save(); render(); document.getElementById('import-overlay').classList.remove('open');
-    showToast(skipped>0?'导入完成：新增 '+added+' 条，跳过 '+skipped+' 条重复 ✓':'导入成功，新增 '+added+' 条记录 ✓');
-  }
-  pendingImportData=null;
-}
-
-/* ===== 复制（脱敏 ****+后5位） ===== */
-function copyData() { if (!data.length) { showToast('Tiada data untuk disalin', true); return; } doCopy(false); }
-/* ===== 复制（完整账号） ===== */
-function copyDataFull() { if (!data.length) { showToast('Tiada data untuk disalin', true); return; } doCopy(true); }
-
-function doCopy(useFullName) {
-  var sorted = getSortedIndices(), NB = '\u00A0';
-  var maxNameLen=0, maxNumLen=1, maxRankLen=1, entries=[];
-  sorted.forEach(function(dataIdx, pos) {
-    var row=data[dataIdx], total=(row.r1||0)+(row.r2||0)+(row.r3||0);
-    var dn = useFullName ? row.name : maskLast5(row.name);
-    if (dn.length>maxNameLen) maxNameLen=dn.length;
-    [row.r1||0,row.r2||0,row.r3||0,total].forEach(function(n){if(String(n).length>maxNumLen)maxNumLen=String(n).length;});
-    entries.push({pos:pos,displayName:dn,r1:row.r1||0,r2:row.r2||0,r3:row.r3||0,total:total});
-  });
-  var prevTotal=-1,prevRank=0;
-  entries.forEach(function(e,i){if(e.total===prevTotal){e.displayRank=prevRank;}else{e.displayRank=i+1;prevRank=e.displayRank;prevTotal=e.total;}if(String(e.displayRank).length>maxRankLen)maxRankLen=String(e.displayRank).length;});
-  var lines=[];
-  lines.push('🏆 *PAPAN PENGLUARAN JEMPUTAN* 🏆'); lines.push('━━━━━━━━━━━━━━━━━━━━━━'); lines.push('');
-  entries.forEach(function(e){
-    var rs=String(e.displayRank);while(rs.length<maxRankLen)rs=NB+rs; var rl=rs+'.';
-    var pn=e.displayName;while(pn.length<maxNameLen)pn+=NB;
-    var r1s=String(e.r1);while(r1s.length<maxNumLen)r1s=NB+r1s;
-    var r2s=String(e.r2);while(r2s.length<maxNumLen)r2s=NB+r2s;
-    var r3s=String(e.r3);while(r3s.length<maxNumLen)r3s=NB+r3s;
-    var ts=String(e.total);while(ts.length<maxNumLen)ts=NB+ts;
-    lines.push(rl+NB+'*'+pn+'*'+NB+NB+'R1:'+r1s+NB+'│'+NB+'R2:'+r2s+NB+'│'+NB+'R3:'+r3s+NB+'│'+NB+'Jumlah:'+NB+'*'+ts+'*');
-  });
-  lines.push('');
-  lines.push('🎉 Tahniah kepada rakan-rakan yang telah memasuki senarai pendahulu di atas! 🎉');
-  lines.push('Senarai pendahulu dikemas kini secara masa nyata! 🔄');
-  lines.push('💡Boleh ditebus sebaik sahaja mencapai sasaran, atau dikumpulkan sehingga markah tertinggi untuk ditebus🏆✨');
-  lines.push('Pantau kedudukan anda dengan rapi, dan ambil tindakan sekarang! 💪');
-  var text=lines.join('\n'), label=useFullName?'Berjaya disalin (akaun penuh) ✓':'Berjaya disalin ke WhatsApp ✓';
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){showToast(label);});}
-  else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast(label);}
-}
-
-function showToast(msg, warn) { var t=document.getElementById('toast'); t.textContent=msg; t.className='toast'+(warn?' warn':''); t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},2500); }
-function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-document.addEventListener('keydown', function(e) {
-  if (e.key==='Enter'&&document.getElementById('overlay').classList.contains('open')) addCustomer();
-  if (e.key==='Escape') { if(document.getElementById('import-overlay').classList.contains('open'))closeImportModal();else if(document.getElementById('overlay').classList.contains('open'))closeModal();else if(searchQuery)clearSearch(); }
-  if ((e.ctrlKey||e.metaKey)&&e.key==='f') { if(!document.getElementById('overlay').classList.contains('open')&&!document.getElementById('import-overlay').classList.contains('open')){e.preventDefault();document.getElementById('search-input').focus();} }
+const name = document.getElementById('inp-name').value.trim();
+if (!name) { document.getElementById('inp-name').focus(); return; }
+if (checkDup()) { showToast('⚠ 账号已存在，请检查', true); return; }
+const entry = { name, noteTag: '' };
+R_KEYS.forEach(k => {
+entry[k] = parseInt(document.getElementById('inp-' + k).value) || 0;
 });
-window.addEventListener('load', function(){ document.getElementById('inp-name').addEventListener('input', checkDup); });
+data.push(entry);
+save(); render();
+document.getElementById('overlay').classList.remove('open');
+showToast('客户已添加 ✓');
+}
+
+function copyData() {
+if (!data.length) { showToast('暂无数据可复制'); return; }
+const sorted = getSortedIndices();
+const lines = sorted.map(i => {
+const row = data[i];
+const t = totalOf(row);
+const parts = R_KEYS.map(k => `${k.toUpperCase()}: ${row[k]||0}`).join('  ');
+return `${getLast4(row.name)}  ${parts}  Jumlah: ${t}`;
+});
+const text = lines.join('\n');
+if (navigator.clipboard) {
+navigator.clipboard.writeText(text).then(() => showToast('Berjaya disalin ✓'));
+} else {
+const ta = document.createElement('textarea');
+ta.value = text; document.body.appendChild(ta); ta.select();
+document.execCommand('copy'); document.body.removeChild(ta);
+showToast('Berjaya disalin ✓');
+}
+}
+
+function showToast(msg, warn) {
+const t = document.getElementById('toast');
+t.textContent = msg;
+t.className = 'toast' + (warn ? ' warn' : '');
+t.classList.add('show');
+setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function escHtml(s) {
+return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+document.addEventListener('keydown', e => {
+if (e.key === 'Enter' && document.getElementById('overlay').classList.contains('open')) addCustomer();
+if (e.key === 'Escape') {
+if (document.getElementById('overlay').classList.contains('open')) closeModal();
+else if (searchQuery) clearSearch();
+}
+// Ctrl/Cmd + F focuses search
+if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+if (!document.getElementById('overlay').classList.contains('open')) {
+e.preventDefault();
+document.getElementById('search-input').focus();
+}
+}
+});
+
+window.addEventListener('load', () => {
+document.getElementById('inp-name').addEventListener('input', checkDup);
+});
+
 render();
 </script>
 </body>
