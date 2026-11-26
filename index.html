@@ -80,6 +80,8 @@ h1 { font-size: 21px; font-weight: 700; color: var(--text); }
 .btn-copy:hover { background: var(--accent3); color: #fff; border-color: var(--accent3); }
 .btn-copy-full { background: var(--surface2); border: 1px solid var(--border-light); color: var(--r2); }
 .btn-copy-full:hover { background: var(--r2); color: #fff; border-color: var(--r2); }
+.btn-copy-top10 { background: var(--surface2); border: 1px solid var(--border-light); color: var(--r6); }
+.btn-copy-top10:hover { background: var(--r6); color: #fff; border-color: var(--r6); }
 .btn-export { background: var(--surface2); border: 1px solid var(--border-light); color: var(--accent2); }
 .btn-export:hover { background: var(--accent2); color: #fff; border-color: var(--accent2); }
 .btn-import { background: var(--surface2); border: 1px solid var(--border-light); color: var(--r1); }
@@ -146,6 +148,10 @@ td.cell-num { padding-left: 3px; padding-right: 3px; }
 .stepper { display: flex; align-items: center; gap: 2px; justify-content: center; }
 .step-btn { width: 20px; height: 20px; border-radius: 5px; border: 1px solid var(--border-light); background: var(--surface2); color: var(--text2); cursor: pointer; font-size: 13px; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
 .step-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(74,140,92,0.08); }
+.step-btn.dec { color: var(--danger); border-color: rgba(192,57,43,0.35); background: rgba(192,57,43,0.06); }
+.step-btn.dec:hover { border-color: var(--danger); color: #fff; background: var(--danger); }
+.step-btn.inc { color: var(--success); border-color: rgba(46,125,69,0.35); background: rgba(46,125,69,0.06); }
+.step-btn.inc:hover { border-color: var(--success); color: #fff; background: var(--success); }
 .step-val { width: 26px; text-align: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; background: transparent; border: none; color: inherit; cursor: default; }
 
 .del-btn { background: transparent; border: none; cursor: pointer; color: var(--text3); font-size: 16px; width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -263,7 +269,8 @@ thead th { padding: 9px 4px; font-size: 11px; }
 <button class="btn btn-export" onclick="exportData()">📤 导出</button>
 <button class="btn btn-import" onclick="triggerImport()">📥 导入</button>
 <button class="btn btn-outline" onclick="clearAll()">🗑 清空</button>
-<span class="sort-note">↓ 按邀请总数排序</span>
+<span class="sort-note">↓ 按邀请总数排序（同数比等级）</span>
+<button class="btn btn-copy-top10" onclick="copyTop10()">🏆 复制前10名</button>
 <button class="btn btn-copy" onclick="copyData()">📋 复制数据</button>
 <button class="btn btn-copy-full" onclick="copyDataFull()">📋 完整复制</button>
 </div>
@@ -382,10 +389,22 @@ function maskLast5(name) {
   return '****' + s.slice(-5);
 }
 
+/* 排名比较：先比邀请总数；总数相同则从 R8 到 R1 逐级对比，高级别邀请人数多者靠前 */
+function compareRows(a, b) {
+  var ta = rowTotal(a), tb = rowTotal(b);
+  if (ta !== tb) return tb - ta;
+  for (var i = R_KEYS.length - 1; i >= 0; i--) {
+    var k = R_KEYS[i];
+    var va = a[k] || 0, vb = b[k] || 0;
+    if (va !== vb) return vb - va;
+  }
+  return 0;
+}
+
 function getSortedIndices() {
   return data
-    .map(function(row, i) { return { i: i, total: rowTotal(row) }; })
-    .sort(function(a, b) { return b.total - a.total; })
+    .map(function(row, i) { return { i: i, row: row }; })
+    .sort(function(a, b) { return compareRows(a.row, b.row); })
     .map(function(x) { return x.i; });
 }
 
@@ -468,9 +487,9 @@ function render() {
     /* R1–R8 步进器单元格 */
     var rCellsHtml = R_KEYS.map(function(k) {
       return '<td class="cell-num"><div class="stepper">' +
-        '<button class="step-btn" onclick="step(' + dataIdx + ',\'' + k + '\',-1)">−</button>' +
+        '<button class="step-btn dec" onclick="step(' + dataIdx + ',\'' + k + '\',-1)">−</button>' +
         '<div class="step-val ' + k + '-val">' + (row[k]||0) + '</div>' +
-        '<button class="step-btn" onclick="step(' + dataIdx + ',\'' + k + '\',1)">＋</button>' +
+        '<button class="step-btn inc" onclick="step(' + dataIdx + ',\'' + k + '\',1)">＋</button>' +
         '</div></td>';
     }).join('');
 
@@ -645,10 +664,14 @@ function confirmImport() {
 function copyData() { if (!data.length) { showToast('Tiada data untuk disalin', true); return; } doCopy(false); }
 /* ===== 复制（完整账号） ===== */
 function copyDataFull() { if (!data.length) { showToast('Tiada data untuk disalin', true); return; } doCopy(true); }
+/* ===== 复制前10名（仅提取前10名，文案与排版和「复制数据」完全一致） ===== */
+function copyTop10() { if (!data.length) { showToast('Tiada data untuk disalin', true); return; } doCopy(false, 10); }
 
 /* 复制排版：每行客户两行——第一行 排名+编号+总量，第二行 R1–R8 明细，避免单行过长 */
-function doCopy(useFullName) {
+/* limit：可选，只取前 N 名（「复制前10名」用），文案与排版保持一致 */
+function doCopy(useFullName, limit) {
   var sorted = getSortedIndices(), NB = '\u00A0';
+  if (limit) sorted = sorted.slice(0, limit);
   var entries = sorted.map(function(dataIdx) {
     var row = data[dataIdx];
     return {
@@ -657,10 +680,12 @@ function doCopy(useFullName) {
       total: rowTotal(row)
     };
   });
-  var prevTotal = -1, prevRank = 0;
+  /* 总数相同已按等级分出先后：仅当总数与 R1–R8 构成完全一致时才并列同一名次 */
+  var prevEntry = null, prevRank = 0;
   entries.forEach(function(e, i) {
-    if (e.total === prevTotal) { e.displayRank = prevRank; }
-    else { e.displayRank = i + 1; prevRank = e.displayRank; prevTotal = e.total; }
+    var sameAsPrev = prevEntry && e.total === prevEntry.total && e.vals.every(function(v, idx) { return v === prevEntry.vals[idx]; });
+    if (sameAsPrev) { e.displayRank = prevRank; }
+    else { e.displayRank = i + 1; prevRank = e.displayRank; prevEntry = e; }
   });
   var maxRankLen = 1;
   entries.forEach(function(e) { if (String(e.displayRank).length > maxRankLen) maxRankLen = String(e.displayRank).length; });
